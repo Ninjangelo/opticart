@@ -1,34 +1,37 @@
+# watsonx interface
+from langchain_ibm import WatsonxLLM
+
 # Streamlit for UI dev
 import streamlit as st
 
 
 
 # Credentials dictionary
-#creds = {
+creds = {
     #'apikey':'7P_8YeFi4DJTKGvSsUMMZD7gX2pdWYGTM4LB1cL8n2Mw',
     #'url': 'https://eu-gb.ml.cloud.ibm.com'
-#}
+}
 
 # Create LLM through Langchain
-#parameters = {
+parameters = {
     #"decoding_method": "sample",
     #"max_new_tokens": 500,
     #"min_new_tokens": 1,
     #"temperature": 0.7,
     #"top_k": 50,
     #"top_p": 1,
-#}
+}
 
 
 
-# Initialize the new Llama 3.3 model
+# Initialise the new Llama 3.3 model
 
-#llm = WatsonxLLM(
+llm = WatsonxLLM(
     #model_id="meta-llama/llama-3-3-70b-instruct",
     #url="https://us-south.ml.cloud.ibm.com",
     #project_id="4807c8e5-4890-4a76-8bf5-a3a7ac61e9ef",
     #params=parameters
-#)
+)
 
 
 # App title
@@ -51,15 +54,15 @@ if prompt:
     st.chat_message('user').markdown(prompt)
     # Store user prompt state
     st.session_state.messages.append({'role':'user', 'content':prompt})
-    #"""
+
     # Send prompt to LLM
-    #response = llm(prompt)
+    response = llm(prompt)
     # Show LLM response
-    #st.chat_message('assistant').markdown(response)
+    st.chat_message('assistant').markdown(response)
     # Store LLM response in state
-    #st.session_state.messages.append(
-        #{'role':'assistant', 'content':response}
-    #)
+    st.session_state.messages.append(
+        {'role':'assistant', 'content':response}
+    )
 
 
 
@@ -70,5 +73,3 @@ from langchain_classic.chains import RetrievalQA
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# watsonx interface
-from langchain_ibm import WatsonxLLM
